@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Her</title>
+<title>Happy Birthday</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -35,29 +35,41 @@ body{
     100%{opacity:.4}
 }
 
-/* TOP MESSAGE */
-.message{
+/* TOP TITLE */
+.title{
     position:absolute;
-    top:4%;
+    top:15px;
     width:100%;
     text-align:center;
-    font-size:26px;
+    font-size:28px;
     color:#c9184a;
     display:none;
     z-index:10;
 }
 
-/* TEDDY */
-.teddy{
+/* BODY MESSAGE */
+.body-message{
     position:absolute;
-    bottom:4%;
+    top:70px;
     left:50%;
     transform:translateX(-50%);
-    font-size:64px;
-    z-index:5;
+    width:90%;
+    max-width:650px;
+    text-align:center;
+    font-size:17px;
+    line-height:1.6;
+    color:#b5174f;
+    display:none;
+    z-index:9;
+}
+.body-message .highlight{
+    margin-top:18px;
+    font-size:22px;
+    color:#c9184a;
+    font-weight:bold;
 }
 
-/* PHOTO BOX */
+/* PHOTOS */
 .photo-box{
     position:absolute;
     width:140px;
@@ -92,28 +104,38 @@ body{
     100%{transform:translateY(0)}
 }
 
-/* POSITIONS */
-.p1{top:30%;left:5%}
-.p2{top:18%;left:28%}
-.p3{top:12%;left:50%;transform:translateX(-50%)}
-.p4{top:18%;right:28%}
-.p5{top:30%;right:5%}
+/* PHOTO POSITIONS */
+.p1{top:45%;left:4%}
+.p2{top:38%;left:24%}
+.p3{top:33%;left:50%;transform:translateX(-50%)}
+.p4{top:38%;right:24%}
+.p5{top:45%;right:4%}
+
+/* TEDDY */
+.teddy{
+    position:absolute;
+    bottom:15px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:64px;
+    z-index:5;
+}
 
 /* ROSE PETALS */
 .petal{
     position:absolute;
-    font-size:22px;
+    font-size:20px;
     animation:fall 10s linear infinite;
 }
 @keyframes fall{
-    from{transform:translateY(-10vh) rotate(0deg)}
-    to{transform:translateY(110vh) rotate(360deg)}
+    from{transform:translateY(-10vh)}
+    to{transform:translateY(110vh)}
 }
 
 /* HEART BALLOONS */
 .balloon{
     position:absolute;
-    font-size:26px;
+    font-size:24px;
     animation:floatUp 12s linear infinite;
 }
 @keyframes floatUp{
@@ -125,9 +147,9 @@ body{
 .firework{
     position:absolute;
     font-size:24px;
-    animation:explode 2s ease-out forwards;
+    animation:boom 2s ease-out forwards;
 }
-@keyframes explode{
+@keyframes boom{
     from{transform:scale(0);opacity:1}
     to{transform:scale(3);opacity:0}
 }
@@ -140,13 +162,26 @@ body{
     <h1>Tap to begin 💖</h1>
 </div>
 
-<div class="message" id="msg">
-    Happy Birthday ❤️
+<div class="title" id="title">Happy Birthday ❤️</div>
+
+<div class="body-message" id="bodyMessage">
+    <p>Today isn’t just your birthday.</p>
+    <p>It’s the day the world got a little more beautiful.</p>
+
+    <p>You are not just someone special<br>
+    you are comfort, smile, peace, and magic in one soul.</p>
+
+    <p>Every laugh of yours stays in my mind longer than it should.<br>
+    Every silence with you still feels warm.</p>
+
+    <p>I don’t know what the future holds,<br>
+    but I know one thing for sure<br>
+    you matter to me more than words can explain.</p>
+
+    <p class="highlight">Happy Birthday, MAGGIE JI 🙃</p>
 </div>
 
-<div class="teddy">🧸</div>
-
-<!-- PHOTOS WITH YOUR ORIGINAL NOTES -->
+<!-- PHOTOS -->
 <div class="photo-box p1">
     <div class="photo"><img src="photo1.jpg"></div>
     <div class="caption">the day we really understood each other, the vibes felt warm and different.</div>
@@ -172,55 +207,53 @@ body{
     <div class="caption">a place where we both felt peace, just existing there together.</div>
 </div>
 
-<audio id="bgMusic" loop preload="auto">
+<div class="teddy">🧸</div>
+
+<audio id="music" loop preload="auto">
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 function startAll(){
     document.querySelector('.start').style.display='none';
-    document.getElementById('msg').style.display='block';
+    document.getElementById('title').style.display='block';
+    document.getElementById('bodyMessage').style.display='block';
 
-    const music=document.getElementById('bgMusic');
-    music.volume=0.4;
-    music.play();
+    const m=document.getElementById('music');
+    m.volume=0.4;
+    m.play();
 
-    petals();
-    balloons();
-    setTimeout(fireworks,15000);
-}
-
-function petals(){
+    // ROSE PETALS
     for(let i=0;i<25;i++){
-        let p=document.createElement('div');
-        p.className='petal';
-        p.innerHTML='🌹';
-        p.style.left=Math.random()*100+'vw';
-        p.style.animationDelay=Math.random()*10+'s';
-        document.body.appendChild(p);
+        let r=document.createElement('div');
+        r.className='petal';
+        r.innerHTML='🌹';
+        r.style.left=Math.random()*100+'vw';
+        r.style.animationDelay=Math.random()*5+'s';
+        document.body.appendChild(r);
     }
-}
 
-function balloons(){
+    // HEART BALLOONS
     for(let i=0;i<15;i++){
         let b=document.createElement('div');
         b.className='balloon';
         b.innerHTML='💖';
         b.style.left=Math.random()*100+'vw';
-        b.style.animationDelay=Math.random()*5+'s';
+        b.style.animationDelay=Math.random()*6+'s';
         document.body.appendChild(b);
     }
-}
 
-function fireworks(){
-    for(let i=0;i<20;i++){
-        let f=document.createElement('div');
-        f.className='firework';
-        f.innerHTML='✨';
-        f.style.left=Math.random()*100+'vw';
-        f.style.top=Math.random()*50+'vh';
-        document.body.appendChild(f);
-    }
+    // FIREWORKS AFTER 6s
+    setTimeout(()=>{
+        for(let i=0;i<18;i++){
+            let f=document.createElement('div');
+            f.className='firework';
+            f.innerHTML='✨';
+            f.style.left=Math.random()*100+'vw';
+            f.style.top=Math.random()*50+'vh';
+            document.body.appendChild(f);
+        }
+    },6000);
 }
 </script>
 
